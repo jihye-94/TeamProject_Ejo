@@ -4553,8 +4553,7 @@ let mainCityArr = []; //API의 전체 sido를 담을 배열
 let subCityArr = []; //API의 전체 sigungn의 담을 배열 
 let splitSigungu = []; //API의 전체 sigungn의 첫단어만 담을 배열
 
-
-createArr(); 
+createArr();
 cutArr();
 sortArrAddOption(mainCityArr, mainCity);
 
@@ -4562,7 +4561,7 @@ sortArrAddOption(mainCityArr, mainCity);
 function createArr() {
 	for (let i in covi) {
 		mainCityArr.push(covi[i].sido);
-	}	
+	}
 }
 
 //시군구를 split-> 앞단어 1개만 담는 sigungu배열 생성 (천안시 동구-> 천안시, 용인시 처인구->용인시)
@@ -4598,7 +4597,6 @@ mainCity.addEventListener("change", function () {
 	subCityArr = [];
 	subCity.innerHTML = '';
 	mainOption = mainCity.options[mainCity.selectedIndex].innerText;
-
 	for (let i in covi) {
 		if (mainOption == covi[i].sido) {
 			subCityArr.push(splitSigungu[i]);
@@ -4607,18 +4605,18 @@ mainCity.addEventListener("change", function () {
 	sortArrAddOption(subCityArr, subCity);
 })
 
-console.log('------------------------------테이블--------------------------');
+console.log('-----------------------테이블-----------------------');
 
 let selectedSido = ""; //선택한 sido
 let selectedSigungu = "";
 
 //클릭하여 변경된 시도의 값을 셀렉 
 mainCity.addEventListener("change", function(event) {
-     console.log(event.currentTarget.value);
-     selectedSido = event.currentTarget.value; //시도
-     if (selectedSido == "시도") {
-          showTenContent()
-     }     
+	console.log(event.currentTarget.value);
+	selectedSido = event.currentTarget.value; //시도
+	if (selectedSido == "시도") {
+		showTenContent()
+	}
 });
 
 //테이블에 정보를 넣는 함수 
@@ -4627,29 +4625,30 @@ subCity.addEventListener("change", function() {
      let tbody = document.getElementById("tbody");     
      tbody.innerHTML = ""; 
      selectedSigungu = event.currentTarget.value; 
-     for (let i = 0; i < cData.data.length; i++) {
-          if (selectedSido == cData.data[i].sido && selectedSigungu == splitSigungu[i]) {     
+     for (let i = 0; i < covi.length; i++) {
+          if (selectedSido == covi[i].sido && selectedSigungu == splitSigungu[i]) {     
                tbody.innerHTML += "<tr>"
-                    + "<td>" + cData.data[i].facilityName + "</td>\n"
-                    + "<td>" + cData.data[i].centerName + "</td>\n"
-                    + "<td>" + cData.data[i].address + "</td>\n"
-                    + "<td>" + cData.data[i].phoneNumber + "</td>\n" + "</tr>";
+                    + "<td>" + covi[i].facilityName + "</td>\n"
+                    + "<td>" + covi[i].centerName + "</td>\n"
+                    + "<td>" + covi[i].address + "</td>\n"
+                    + "<td>" + covi[i].phoneNumber + "</td>\n" + "</tr>";
           }          
      }
-});
+}); 
+
 
 //초기 화면 기본 세팅 
-window.onload=function() {
-     showTenContent()
+window.onload = function () {
+	showTenContent();
 };
 
 //API의 정보 10개만 테이블 생성 함수 
 function showTenContent() {
-     for (i = 0; i < 10; i++) {
-          tbody.innerHTML += "<tr>"
-               + "<td>" + covi[i].facilityName + "</td>\n"
-               + "<td>" + covi[i].centerName + "</td>\n"
-               + "<td>" + covi[i].address + "</td>\n"
-               + "<td>" + covi[i].phoneNumber + "</td>\n" + "</tr>";
-     }
-}
+	for (i = 0; i < 10; i++) {
+		tbody.innerHTML += "<tr>" +
+			"<td>" + covi[i].facilityName + "</td>\n" +
+			"<td>" + covi[i].centerName + "</td>\n" +
+			"<td>" + covi[i].address + "</td>\n" +
+			"<td>" + covi[i].phoneNumber + "</td>\n" + "</tr>";
+	}
+};

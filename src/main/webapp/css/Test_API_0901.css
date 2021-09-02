@@ -333,52 +333,54 @@
 			color:blue;
 		}
 		/*게시판 상세*/
-		#mainbody2 #boardwritesec{
+		
+		#mainbody2 .boardwritesec{
 			border-top:2px solid rgb(102,102,102);
 			border-bottom:2px solid rgb(102,102,102);
+			background-color: rgb(239, 243, 247) ;
 		}
-		#mainbody2 #boardwritesec table{
+		#mainbody2 .boardwritesec table{
 			background-color: rgb(221,221,221);
 			border-collapse: collapse;
 			margin:auto;
 		}
-		#mainbody2 #boardwritesec td{
+		#mainbody2 .boardwritesec td{
 			font-size: 14px;
 			padding:7px;
 		}
-		#mainbody2 #boardwritesec span{
+		#mainbody2 .boardwritesec span{
 			margin-left: 30px;
 			font-size: 8px;
 			color:red;
 		}
-		#mainbody2 #boardwritesec tr{
+		#mainbody2 .boardwritesec tr{
 			border-bottom: 1px solid rgb(238,238,238);
 		}
-		#mainbody2 #boardwritesec .tableclass1{
+		#mainbody2 .boardwritesec .tableclass1{
 			width: 100px;
 			background-color: rgb(77,108,139);
 			text-align: center;
 			color:white;
 		}
-		#mainbody2 #boardwritesec .tableclass2{
+		#mainbody2 .boardwritesec .tableclass2{
 			width: 830px;
 		}
-		#mainbody2 #boardwritesec .typehere1{
+		#mainbody2 .boardwritesec .typehere1{
 			border:1px solid rgb(221,221,221) ;
 			width: 500px;
 			height: 20px;
 		}
-		#mainbody2 #boardwritesec .typehere{
+		#mainbody2 .boardwritesec .typehere{
 			border:1px solid rgb(221,221,221) ;
 			width: 200px;
 			height: 20px;
 		}
-		#mainbody2 #boardwritesec #contents{
+		#mainbody2 .boardwritesec #contents{
 			width: 930px;
 			height: 500px;
 			resize: none;
 		}
-		#mainbody2 #boardwritesec textarea{
+		#mainbody2 .boardwritesec textarea{
 			border:1px solid rgb(221,221,221) ;
 		}
 		#mainbody2 #title1{
