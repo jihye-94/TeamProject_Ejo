@@ -1,5 +1,3 @@
-"https://code.jquery.com/jquery-3.2.1.min.js";
-
 let cData = {
 	data: [{
 			address: "서울특별시 중구 을지로 39길 29",
@@ -4556,15 +4554,23 @@ let subCityArr = []; //API의 전체 sigungn의 담을 배열
 let splitSigungu = []; //API의 전체 sigungn의 첫단어만 담을 배열
 
 
+createArr(); 
+cutArr();
+sortArrAddOption(mainCityArr, mainCity);
+
 //sido의 값을 일괄 담는 mainCityArr배열 생성 
-for (let i in covi) {
-	mainCityArr.push(covi[i].sido);
+function createArr() {
+	for (let i in covi) {
+		mainCityArr.push(covi[i].sido);
+	}	
 }
 
 //시군구를 split-> 앞단어 1개만 담는 sigungu배열 생성 (천안시 동구-> 동구, 용인시 처인구->용인시)
-for (let i in covi) {
-	let splitArr = covi[i].sigungu.split(" ", 1);
-	splitSigungu.push(splitArr[0]);
+function cutArr() {
+	for (let i in covi) {
+		let splitArr = covi[i].sigungu.split(" ", 1);
+		splitSigungu.push(splitArr[0]);
+	}
 }
 
 //시티 배열을 정렬, 중복제거, 셀렉 옵션 생성, 옵션의 innertxt에 .
@@ -4584,8 +4590,8 @@ function sortArrAddOption(CityArr, City) {
 	}
 }
 
-//시구(mainCity) 셀렉트 옵션값 생성
-sortArrAddOption(mainCityArr, mainCity);
+//시구(mainCity) 셀렉트 옵션값 생성 sortArrAddOption(mainCityArr, mainCity);
+
 
 //시구(mainCity) 셀렉트에 맞는 시군구(subCity) 옵션 출력(add->remove반복)
 mainCity.addEventListener("change", function () {
@@ -4601,8 +4607,10 @@ mainCity.addEventListener("change", function () {
 	sortArrAddOption(subCityArr, subCity);
 })
 
+console.log('------------------------------테이블--------------------------');
+/*
 let tbody = document.getElementById("tbody");
-let count = 0;
+
 let tableHtml = "";
 
 mainCityArr.push(covi[i].sido);
@@ -4615,45 +4623,43 @@ let centerName = covi[i].centerName;
 let phoneNumber = covi[i].phoneNumber;
 let address = covi[i].address;
 
-count++;
-if (count % 2 == 0) {
-	tableHtml = `<tr class="info"><td>${facilityName}</td><td>${centerName}</td><td>${phoneNumber}</td><td>${address}명</td></tr>`;
-} else {
-	tableHtml = `<tr class="warning"><td>${facilityName}</td><td>${centerName}</td><td>${phoneNumber}</td><td>${address}명</td></tr>`;
-}
+tableHtml = `<tr class="info"><td>${facilityName}</td><td>${centerName}</td><td>${phoneNumber}</td><td>${address}명</td></tr>`;
+
 console.log(tableHtml);
 tbody.innerHTML += tableHtml;
 console.log(tbody);
 console.log(tbody.innerHTML);
-
+*/
 
 
 console.log('------------------------------상준테이블--------------------------');
 let selectedSido = ""; //선택한 sido 
 let selectedSigungu = "";
-sel.addEventListener("change", function (event) {
-	console.log(event.currentTarget.value);
-	selectedSido = event.currentTarget.value; //시도 
+
+mainCity.addEventListener("change", function (event) {
+	console.log(event.currentTarget.innerText);
+	selectedSido = event.currentTarget.innerText; //시도 
 });
+
 console.log('--------------------------------------------------------');
 
-sel2.addEventListener("change", function () {
-console.log(event.currentTarget.value);
-selectedSigungu = event.currentTarget.value; //군 
-console.log(selectedSido); //서울특별시 값 넘어옴 ㅇㅋ 
-//넘겨받은 값에 해당하는 시도 군구....>> 배열의 값과 일치하는 값을 전부 불러와야합니다. 
-for (let i = 0; i < cData.data.length; i++) {
-	console.log(selectedSigungu);
-	console.log(selectedSido);
-	if (selectedSido == cData.data[i].sido && selectedSigungu == cData.data[i].sigungu) {
-		console.log(tr);
-		tbody.innerHTML += tr;
+subCity.addEventListener("change", function () {
+	console.log(event.currentTarget.value);
+	selectedSigungu = event.currentTarget.value; //군 
+	console.log(selectedSido); //서울특별시 값 넘어옴 ㅇㅋ 
+	//넘겨받은 값에 해당하는 시도 군구....>> 배열의 값과 일치하는 값을 전부 불러와야합니다. 
+	for (let i = 0; i < cData.data.length; i++) {
+		console.log(selectedSigungu);
+		console.log(selectedSido);
+		if (selectedSido == cData.data[i].sido && selectedSigungu == cData.data[i].sigungu) {
+			console.log(tr);
+			tbody.innerHTML += tr;
+		}
 	}
-}
 });
 
 
-window.onload(function () {
+function temp99() {
 	let myList = [];
 	for (let index in cData.data) {
 		myList.push(cData.data[index]);
@@ -4672,4 +4678,4 @@ window.onload(function () {
 		td4.appendChild(cData.data[index].lat);
 		td5.appendChild(cData.data[index].lng);
 	}
-});
+};
