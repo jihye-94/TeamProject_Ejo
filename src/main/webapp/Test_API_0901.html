@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+</head>
+
+<body>
+	<h3 align="center">코로나 예방접종 시설</h3>
+
+	<form name="frmdata">
+		<select id="main-city">
+			<option value="시도" SELECTED>시도</option>
+		</select>
+		<select id="sub-city">
+			<option value="시군구" SELECTED>시군구</option>
+		</select>
+	</form>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<td colspan="4" align="right">랄라</td>
+			</tr>
+			<tr class="success">
+				<td>시설명</td>
+				<td>센터명</td>
+				<td>전화번호</td>
+				<td>주소</td>
+			</tr>
+		</thead>
+		<tbody id="tbody"></tbody>
+
+	</table>
+</body>
+<script src="js/Test_API_0901.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</html>
