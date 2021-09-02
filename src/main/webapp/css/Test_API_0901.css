@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
+		body{
+			margin:0;
+		}
+		header a{
+			text-decoration: none;
+			color:rgb(204,204,204);
+		}
+		header a:visited{
+			color:rgb(204,204,204);
+		}
+		header{
+			background-color: rgb(77,108,139);
+			position: relative;
+			width: 100%;
+		}
+		header #left_nav{
+			position: relative;
+			top:0px;
+			color:rgb(221,221,221);
+		}
+		header #left_nav td{
+			padding:10px;
+			font-size: 14px;
+		}
+		header #left_nav span{
+			color:rgb(46,204,113);
+		}
+		header #left_nav #indexIcon{
+			position: absolute;
+			top:15px;
+			width:16px;
+		}
+		header #left_nav #indexIconActive{
+			position: absolute;
+			top:15px;
+			width:16px;
+			opacity: 0;
+		}
+		header #left_nav #indexIconActive:hover{
+			opacity: 1;
+		}
+		#bignav{
+			float: left;
+			background-color: rgb(238,238,238);
+			color:rgb(102,102,102);
+			padding:20px;
+			display:none; /*잘 안되서 일단 숨겨 놓음*/
+		}
+
+		header #right_nav{
+			position:absolute;
+			top:0px;
+			right:10px;
+			color:rgb(221,221,221);
+		}
+		header #right_nav td{
+			padding:10px;
+			font-size: 13px;
+		}
+		header #title{
+			margin-top:40px;
+			margin-bottom: 0;
+			font-size: 30px;
+			text-align: center;
+			color:white;
+		}
+		header #small_title{
+			margin:0;
+			padding: 0px;
+			text-align: center;
+			color:rgb(163,191,219);
+		}
+		header #bottom_nav{
+			padding:20px;
+		}
+		header #bottom_nav ul{
+			list-style: none;
+			text-align: center;
+			margin:0;
+		}
+		header #bottom_nav ul li{
+			font-size: 14px;
+			display: inline-block;
+			padding-left:13px;
+			padding-right:13px;
+			color:rgb(221,221,221);
+			border-left:1px solid rgb(102,102,102);
+		}
+		header #bottom_nav .NAV:nth-child(1){
+			border:0px;
+		}
+		#mainbody #breadcrumb{
+			border-bottom: 1px solid rgb(221,221,221);
+			background-color: rgb(238,238,238);
+			color:rgb(153,153,153);
+			font-size: 12px;
+			display: flex;
+			flex-direction: row;
+		}
+		#mainbody #breadcrumb .littlesection{
+			flex-grow: 1;
+		}
+		#mainbody #breadcrumb .littlesection:nth-child(2){
+			flex-grow: 3;
+			flex-basis: 100px;
+			flex-shrink: 0;
+		}
+		#mainbody #breadcrumb .littlesection:nth-child(2) p{
+			margin:0;
+			padding:13px;
+		}
+		#mainbody #contents{
+			display: flex;
+			flex-direction: row;
+		}
+		#mainbody #contents .section{
+			border-right: 1px solid rgb(221,221,221);
+			flex-grow: 1;
+			flex-shrink:1;
+		}
+		#mainbody #contents .section:nth-child(2){
+			border-bottom: 1px solid rgb(221,221,221);
+			flex-grow: 3;
+			flex-basis: 100px;
+			flex-shrink: 0;
+		}
+		#mainbody #contents .section:nth-child(2) article{
+			padding:100px;
+			line-height: 1.8;
+			font-size: 13px;
+			font-family: 'Nanum Gothic';
+		}
+		.movie{
+			margin-top:20px;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+		iframe{
+			box-shadow: 1px 3px 3px gray;
+		}
+		#mainbody #contents .section:nth-child(3){
+			border-right:0;
+		}
+		footer{
+			text-align: center;
+			padding: 10px;
+			font-size:12px;
+		}
+
+
+		/*로그인*/
+		.main{
+			padding-top: 80px;
+		}
+		.main .loginbox{
+			border: 1px solid rgb(170,170,170) ;
+			width:400px;
+			margin:auto;
+			box-shadow: -1px 1px 3px rgb(221,221,221), 1px -1px 3px rgb(221,221,221);
+		}
+		.main .loginbox #box1, #box2, #box3{
+			border-bottom: 1px solid rgb(221,221,221);
+		}
+		.main .loginbox #box1{
+			padding:15px;
+			display: flex;
+		}
+		.main .loginbox #box1 strong{
+			font-size: 12px;
+			flex-grow: 3;
+		}
+		.main .loginbox #box1 span{
+			text-align: right;
+			color:rgb(102,102,102);
+			font-size: 12px;
+		}
+		.main .loginbox #box2{
+			padding:45px;
+			padding-bottom: 10px;
+			padding-top:20px;
+		}
+		.main .loginbox #box2 .box2text{
+			font-size: 12px;
+			color:rgb(153,153,153);
+		}
+		.main .loginbox #box2 .typehere{
+			height: 35px;
+			width: 302px;
+			margin-bottom: 7px;
+		}
+		.main .loginbox #box2 p{
+			text-align: center;
+		}
+		#loginsub{
+			background-color: rgb(51,204,153);
+			border:none;
+			color:white;
+			font-size: 14px;
+			font-weight: bold;
+			text-align: center;
+			cursor: pointer;
+			width: 130px;
+			height: 40px;
+			margin:10px;
+		}
+		.main .loginbox #box3 {
+			padding:25px;
+		}
+		.main .loginbox #box3 #facebookloginbutton{
+			margin:auto;
+			width: 230px;
+			background-color: rgb(59,89,152);
+			font-size: 13px;
+			color:white;
+			font-weight: bold;
+			padding:13px;
+			box-shadow: 0px 2px 1px rgb(102,102,102);
+			border-radius: 3px;
+		}
+		.main .loginbox #box4 {
+			text-align: center;
+			font-size: 14px;
+			color:rgb(102,102,102);
+		}
+
+		/*게시판 메인*/
+		#mainbody2{
+			display: flex;
+			flex-direction: row;
+		}
+		#mainbody2 .section{
+			flex-grow: 1;
+			flex-shrink: 1;
+		}
+
+		#mainbody2 .section:nth-child(2){
+			flex-grow: 3;
+			flex-shrink: 0;
+			flex-basis: 300px;
+		}
+		#mainbody2 article{
+			padding:50px;
+		}
+		#mainbody2 #searchsec{
+			text-align: right;
+			padding-bottom:20px;
+		}
+		#mainbody2 #boardsec a{
+			text-decoration: none;
+		}
+		#mainbody2 #boardsec a:visited{
+			color:rgb(102,102,102);
+		}
+		#mainbody2 #boardsec a:hover{
+			color:blue;
+			text-decoration: underline;
+		}
+		#mainbody2 #boardsec #number{
+			width:300px;
+		}
+		#mainbody2 #boardsec #title{
+			width:400px;
+		}
+		#mainbody2 #boardsec #writer{
+			width:100px;
+		}
+		#mainbody2 #boardsec #ontime{
+			width:250px;
+		}
+		#mainbody2 #boardsec #look{
+			width:50px;
+		}
+		#mainbody2 #boardsec table{
+			border-collapse: collapse;
+		}
+		#mainbody2 #boardsec th{
+			border-bottom: 1px solid rgb(102,102,102);
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		#mainbody2 #boardsec td{
+			text-align: center;
+			color:rgb(102,102,102);
+			font-size: 14px;
+			padding:5px;
+		}
+		#mainbody2 #boardsec .linkto{
+			text-align: left;
+			padding:5px;
+		}
+		#mainbody2 #boardsec tr{
+			border-bottom: 1px solid rgb(221,221,221);
+		}
+		
+		#mainbody2 #boardsec .odd{
+			background-color:rgb(216,235,248);
+		}
+		#mainbody2 #writesec{
+			text-align: right;
+			padding-top: 15px;
+		}
+		#mainbody2 #writesec .writesecbutton{
+			background-color: rgb(254,215,102);
+			color:rgb(102,102,102);
+			font-weight: bold;
+			font-size: 14px;
+			padding-top:7px;
+			padding-bottom:7px;
+			padding-right:10px;
+			padding-left:10px;
+			box-shadow: 1px 1px 2px gray;
+			cursor: pointer;
+			border:0;
+
+		}
+		#mainbody2 #writesec a{
+			text-decoration: none;
+		}
+		#mainbody2 #listsec{
+			padding-top: 10px;
+			color: rgb(102,102,102);
+		}
+		#mainbody2 #listsec table {
+			margin:auto;
+		}
+		#mainbody2 #listsec table td{
+			cursor: pointer;
+			padding-right:15px;
+			padding-left:15px;
+		}
+		#mainbody2 #listsec table td:hover{
+			color:blue;
+		}
+		/*게시판 상세*/
+		#mainbody2 #boardwritesec{
+			border-top:2px solid rgb(102,102,102);
+			border-bottom:2px solid rgb(102,102,102);
+		}
+		#mainbody2 #boardwritesec table{
+			background-color: rgb(221,221,221);
+			border-collapse: collapse;
+			margin:auto;
+		}
+		#mainbody2 #boardwritesec td{
+			font-size: 14px;
+			padding:7px;
+		}
+		#mainbody2 #boardwritesec span{
+			margin-left: 30px;
+			font-size: 8px;
+			color:red;
+		}
+		#mainbody2 #boardwritesec tr{
+			border-bottom: 1px solid rgb(238,238,238);
+		}
+		#mainbody2 #boardwritesec .tableclass1{
+			width: 100px;
+			background-color: rgb(77,108,139);
+			text-align: center;
+			color:white;
+		}
+		#mainbody2 #boardwritesec .tableclass2{
+			width: 830px;
+		}
+		#mainbody2 #boardwritesec .typehere1{
+			border:1px solid rgb(221,221,221) ;
+			width: 500px;
+			height: 20px;
+		}
+		#mainbody2 #boardwritesec .typehere{
+			border:1px solid rgb(221,221,221) ;
+			width: 200px;
+			height: 20px;
+		}
+		#mainbody2 #boardwritesec #contents{
+			width: 930px;
+			height: 500px;
+			resize: none;
+		}
+		#mainbody2 #boardwritesec textarea{
+			border:1px solid rgb(221,221,221) ;
+		}
+		#mainbody2 #title1{
+			text-align: center;
+			font-size: 24px;
+			font-weight: bold;
+			padding:5px;
+			margin-bottom: 10px;
+			border-bottom:5px solid rgb(77,108,139) ;
+		}
+
+
+		#usercontents{
+			padding :10px;
+			background-color: white;
+			color:black;
+		}

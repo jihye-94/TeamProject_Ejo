@@ -4565,7 +4565,7 @@ function createArr() {
 	}	
 }
 
-//시군구를 split-> 앞단어 1개만 담는 sigungu배열 생성 (천안시 동구-> 동구, 용인시 처인구->용인시)
+//시군구를 split-> 앞단어 1개만 담는 sigungu배열 생성 (천안시 동구-> 천안시, 용인시 처인구->용인시)
 function cutArr() {
 	for (let i in covi) {
 		let splitArr = covi[i].sigungu.split(" ", 1);
@@ -4608,74 +4608,48 @@ mainCity.addEventListener("change", function () {
 })
 
 console.log('------------------------------테이블--------------------------');
-/*
-let tbody = document.getElementById("tbody");
 
-let tableHtml = "";
-
-mainCityArr.push(covi[i].sido);
-subCityArr.push(covi[i].splitSigungu);
-
-let sido = covi[i].sido;
-let sigungu = covi[i].sigungu;
-let facilityName = covi[i].facilityName;
-let centerName = covi[i].centerName;
-let phoneNumber = covi[i].phoneNumber;
-let address = covi[i].address;
-
-tableHtml = `<tr class="info"><td>${facilityName}</td><td>${centerName}</td><td>${phoneNumber}</td><td>${address}명</td></tr>`;
-
-console.log(tableHtml);
-tbody.innerHTML += tableHtml;
-console.log(tbody);
-console.log(tbody.innerHTML);
-*/
-
-
-console.log('------------------------------상준테이블--------------------------');
-let selectedSido = ""; //선택한 sido 
+let selectedSido = ""; //선택한 sido
 let selectedSigungu = "";
 
-mainCity.addEventListener("change", function (event) {
-	console.log(event.currentTarget.innerText);
-	selectedSido = event.currentTarget.innerText; //시도 
+//클릭하여 변경된 시도의 값을 셀렉 
+mainCity.addEventListener("change", function(event) {
+     console.log(event.currentTarget.value);
+     selectedSido = event.currentTarget.value; //시도
+     if (selectedSido == "시도") {
+          showTenContent()
+     }     
 });
 
-console.log('--------------------------------------------------------');
-
-subCity.addEventListener("change", function () {
-	console.log(event.currentTarget.value);
-	selectedSigungu = event.currentTarget.value; //군 
-	console.log(selectedSido); //서울특별시 값 넘어옴 ㅇㅋ 
-	//넘겨받은 값에 해당하는 시도 군구....>> 배열의 값과 일치하는 값을 전부 불러와야합니다. 
-	for (let i = 0; i < cData.data.length; i++) {
-		console.log(selectedSigungu);
-		console.log(selectedSido);
-		if (selectedSido == cData.data[i].sido && selectedSigungu == cData.data[i].sigungu) {
-			console.log(tr);
-			tbody.innerHTML += tr;
-		}
-	}
+//테이블에 정보를 넣는 함수 
+//구군에 변경이 있을 경우 시도, 시군구 일치여부 확인하여 일치시 covi 배열에서 4가지 요소값 꺼내 테이블에 담음 
+subCity.addEventListener("change", function() {
+     let tbody = document.getElementById("tbody");     
+     tbody.innerHTML = ""; 
+     selectedSigungu = event.currentTarget.value; 
+     for (let i = 0; i < cData.data.length; i++) {
+          if (selectedSido == cData.data[i].sido && selectedSigungu == splitSigungu[i]) {     
+               tbody.innerHTML += "<tr>"
+                    + "<td>" + cData.data[i].facilityName + "</td>\n"
+                    + "<td>" + cData.data[i].centerName + "</td>\n"
+                    + "<td>" + cData.data[i].address + "</td>\n"
+                    + "<td>" + cData.data[i].phoneNumber + "</td>\n" + "</tr>";
+          }          
+     }
 });
 
-
-function temp99() {
-	let myList = [];
-	for (let index in cData.data) {
-		myList.push(cData.data[index]);
-	}
-	console.log(myList);
-	for (let index in cData.data) {
-		let tr = document.createElement("tr");
-		let td1 = document.createElement("td");
-		let td2 = document.createElement("td");
-		let td3 = document.createElement("td");
-		let td4 = document.createElement("td");
-		let td5 = document.createElement("td");
-		td1.appendChild(cData.data[index].facilityName);
-		td2.appendChild(cData.data[index].centerName);
-		td3.appendChild(cData.data[index].phoneNumber);
-		td4.appendChild(cData.data[index].lat);
-		td5.appendChild(cData.data[index].lng);
-	}
+//초기 화면 기본 세팅 
+window.onload=function() {
+     showTenContent()
 };
+
+//API의 정보 10개만 테이블 생성 함수 
+function showTenContent() {
+     for (i = 0; i < 10; i++) {
+          tbody.innerHTML += "<tr>"
+               + "<td>" + covi[i].facilityName + "</td>\n"
+               + "<td>" + covi[i].centerName + "</td>\n"
+               + "<td>" + covi[i].address + "</td>\n"
+               + "<td>" + covi[i].phoneNumber + "</td>\n" + "</tr>";
+     }
+}
