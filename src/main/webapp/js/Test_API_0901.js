@@ -4636,7 +4636,6 @@ subCity.addEventListener("change", function() {
      }
 }); 
 
-
 //초기 화면 기본 세팅 
 window.onload = function () {
 	showTenContent();
