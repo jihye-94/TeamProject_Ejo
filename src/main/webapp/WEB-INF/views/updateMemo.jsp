@@ -32,24 +32,30 @@
 	
 </head>
 <body>
-<c:set var="memolist" value="${requestScope.memolist}"></c:set>
+
+<c:set var="memo" value="${requestScope.detailMemo}"></c:set>
+
 <div align=center>
 <hr color=green width=400><h2> Line Memo List </h2><hr color=green width=400>
+<form name="f" action="updateMemo.memo" method="get"> 
 <table> 
-	 <tr>
+	 <tr>	 	
 	 	<th>Writer</th> 
 	 	<th>MemoContent</th>
 	 	<th>Email</th>
+	 	<th>수삭수삭</th>
 	 </tr>
-	<c:forEach var="memo" items="${memolist}">
-		<tr>
+	
+	<tr>
 		
-			<td><a href="detailView.memo?id=${memo.id}">${memo.id}</a></td>
-			<td>${memo.email}</td>
-			<td>${memo.content}</td>
-		</tr>
-	</c:forEach>
+		<td>${memo.id}<input type="hidden" size="40" id="id" name="id" value="${memo.id}" ></td>
+		<td><input type="text" size="40" id="email" name="email" maxlength="10" value="${memo.email}" ></td>
+		<td><input type="text" size="40" id="content" name="content" maxlength="10" value="${memo.content}" ></td>
+		<td><input type="submit" value="수정완료" ></td>
+	</tr>
+	
 </table>
+</form>
 </div>
 <a href='memo.html'>글쓰기</a>
 

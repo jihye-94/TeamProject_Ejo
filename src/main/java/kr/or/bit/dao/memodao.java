@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 import kr.or.bit.dto.memo;
 import kr.or.bit.utils.ConnectionHelper;
 
-
 /*
 DB작업
 CRUD 작업을 하기위한 함수를 생성하는 곳
@@ -28,12 +27,9 @@ default 5개
 */
 public class memodao {
 	/*
-	기존 방식
-	Connection conn = null;
-	public memodao() {
-		conn = Singleton_Helper.getConnection("oracle");
-	}
-	*/
+	 * 기존 방식 Connection conn = null; public memodao() { conn =
+	 * Singleton_Helper.getConnection("oracle"); }
+	 */
 	/*
 	 * DataSource ds = null; public memodao(){ try { Context context = new
 	 * InitialContext(); //현재 프로젝트에 이름기반 검색 ds =
@@ -43,181 +39,261 @@ public class memodao {
 	 * 
 	 * }
 	 */
-	
-	
-	
-	//전체 데이터 read (where 조건절이 없어요)
-	public ArrayList<memo> getMemoList() throws SQLException{
-		
-		Connection conn = ConnectionHelper.getConnection("oracle"); //객체 얻기
-		
+
+	// 전체 데이터 read (where 조건절이 없어요)
+	public ArrayList<memo> getMemoList() throws SQLException {
+
+		Connection conn = ConnectionHelper.getConnection("oracle"); // 객체 얻기
+
 		PreparedStatement pstmt = null;
-		String sql="select id, email , content from memo";
+		String sql = "select id, email , content from memo";
 		pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
-		
+
 		ArrayList<memo> memolist = new ArrayList<>();
-		while(rs.next()) {
+		while (rs.next()) {
 			memo m = new memo();
 			m.setId(rs.getString("id"));
 			m.setEmail(rs.getString("email"));
 			m.setContent(rs.getString("content"));
 			memolist.add(m);
 		}
-		
-		
+
 		ConnectionHelper.close(rs);
 		ConnectionHelper.close(pstmt);
-		ConnectionHelper.close(conn); //반환하기
-		
+		ConnectionHelper.close(conn); // 반환하기
+
 		return memolist;
 	}
-	
-	//Insert
-	//Parameter (id,ename,cotent)
-	//권장: public int insertMemo(memo m){} >> FrameWork 자동화..
-	public int insertMemo(String id, String email , String content) {
-		Connection conn =null;//추가
-		int resultrow=0;
+
+	// Insert
+	// Parameter (id,ename,cotent)
+	// 권장: public int insertMemo(memo m){} >> FrameWork 자동화..
+	public int insertMemo(String id, String email, String content) {
+		Connection conn = null;// 추가
+		int resultrow = 0;
 		PreparedStatement pstmt = null;
-		
+
 		try {
-				conn= ConnectionHelper.getConnection("oracle");//추가
-				
-				String sql = "insert into memo(id,email,content) values(?,?,?)";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, id);
-				pstmt.setString(2, email);
-				pstmt.setString(3, content);
-				
-				resultrow = pstmt.executeUpdate();
-				
-		}catch(Exception e) {
+			conn = ConnectionHelper.getConnection("oracle");// 추가
+
+			String sql = "insert into memo(id,email,content) values(?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			pstmt.setString(3, content);
+
+			resultrow = pstmt.executeUpdate();
+
+		} catch (Exception e) {
 			System.out.println("Insert : " + e.getMessage());
-		}finally {
+		} finally {
 			ConnectionHelper.close(pstmt);
 			ConnectionHelper.close(conn);
 			try {
-				conn.close(); //받환하기
+				conn.close(); // 받환하기
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 		return resultrow;
 	}
+
+	// Update
+
+//	public int updateMemo(String id, String email, String content) {	
+//	// update memo set email=? , content=? where id=?
+//	// m.getId()
+//	Connection conn = null;// 추가
+//	PreparedStatement pstmt = null;
+//	int ref = 0;
+//	
+//	
+//
+//	try {
+//		conn = ConnectionHelper.getConnection("oracle");// 추가
+//		String sql = "update memo set email=? , content=? where id=?";
+//		pstmt = conn.prepareStatement(sql);
+//
+//		pstmt.setString(1, id);
+//		pstmt.setString(2, email);
+//		pstmt.setString(3, content);
+//
+//		ref = pstmt.executeUpdate();
+//
+//	} catch (Exception e) {
+//		System.out.println("deletdMemo(String id)" + e.getMessage());
+//	} finally {
+//
+//		ConnectionHelper.close(pstmt);
+//		ConnectionHelper.close(conn);
+//
+//	}
+//	// System.out.println("ismemoid : " + ismemoid);
+//	System.out.println("deletdMemo4 ");
+//
+//	return ref;
+//
+//	}
 	
-	//Update
-	public int updateMemo(memo m) {
-		//update memo set email=? , content=? where id=?
-		//m.getId()
-		return 0;
-	}
-	
-	//Delete
-	public int deleteMemo(String id) {
-		//delete from memo where id=?
-		return 0;
+	// update
+	public memo updateMemo(String id, String email, String content) {
+		// update memo set email=? , content=? where id=?
+		// m.getId()
+		Connection conn = null;// 추가
+		PreparedStatement pstmt = null;
+		int ref = 0;
+		memo m = new memo();
+		try {
+			conn = ConnectionHelper.getConnection("oracle");// 추가
+			String sql = "update memo set email=? , content=? where id=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, email);
+			pstmt.setString(2, content);
+			pstmt.setString(3, id);
+
+			ref = pstmt.executeUpdate();
+			
+			m.setId(id);
+			m.setEmail(email);
+			m.setContent(content);
+			
+
+		} catch (Exception e) {
+			System.out.println("deletdMemo(String id)" + e.getMessage());
+		} finally {
+
+			ConnectionHelper.close(pstmt);
+			ConnectionHelper.close(conn);
+
+		}
+		// System.out.println("ismemoid : " + ismemoid);
+		System.out.println("updateMemo ");
+
+		return m;
+
 	}
 
-	//추가함수 (ID 존재 유무 판단 함수)
+	// Delete
+	public int deleteMemo(String id) { // detailView.jsp
+		// delete from memo where id=?
+		Connection conn = null;// 추가
+		PreparedStatement pstmt = null;
+
+		int ref = 0;
+		;
+		memo m = new memo();
+
+		try {
+			conn = ConnectionHelper.getConnection("oracle");// 추가
+			String sql = "delete from memo where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			ref = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("deleteMemo(String id)" + e.getMessage());
+		} finally {
+
+			ConnectionHelper.close(pstmt);
+			ConnectionHelper.close(conn);
+
+		}
+		// System.out.println("ismemoid : " + ismemoid);
+		System.out.println("deleteMemo " + m);
+
+		return ref;
+	}
+
+	// 추가함수 (ID 존재 유무 판단 함수)
 	public String isCheckById(String id) {
-		Connection conn =null;//추가
-		String ismemoid= null;
+		Connection conn = null;// 추가
+		String ismemoid = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-				conn= ConnectionHelper.getConnection("oracle");//추가
-				String sql = "select id from memo where id=?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, id);
-				
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					//do {
-						//String id = rs.getString("id")
-						ismemoid = "false";
-						
-					//}while(rs.next());
-				}else {
-						ismemoid = "true";
-				}
-			
-		}catch (Exception e) {
+			conn = ConnectionHelper.getConnection("oracle");// 추가
+			String sql = "select id from memo where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				// do {
+				// String id = rs.getString("id")
+				ismemoid = "false";
+
+				// }while(rs.next());
+			} else {
+				ismemoid = "true";
+			}
+
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}finally {
+		} finally {
 			ConnectionHelper.close(rs);
 			ConnectionHelper.close(pstmt);
 			ConnectionHelper.close(conn);
 			try {
-				conn.close();//반환하기
+				conn.close();// 반환하기
 			} catch (SQLException e) {
-				
+
 				e.printStackTrace();
-			} 
+			}
 		}
-		//System.out.println("ismemoid : " + ismemoid);
+		// System.out.println("ismemoid : " + ismemoid);
 		return ismemoid;
 	}
-	
+
+	// 상세화면보기 함수
 	public memo detailMemo(String id) {
-		Connection conn =null;//추가
-		
+		Connection conn = null;// 추가
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-	
-		memo m = new memo();
-		
-		try {
-				conn= ConnectionHelper.getConnection("oracle");//추가
-				String sql = "select id, email , content from memo where id=?";
-				pstmt = conn.prepareStatement(sql);
-				
-				pstmt.setString(1, id);
-				
-				rs = pstmt.executeQuery();
-				
 
-				if(rs.next()) {
-					m.setId(rs.getString("id"));
-					m.setEmail(rs.getString("email"));
-					m.setContent(rs.getString("content"));
-					System.out.println("1");
-				}
-			
-					
-				
-					System.out.println("2");
-			
-			
-		}catch (Exception e) {
-			System.out.println(e.getMessage()+"detailMemo(String id)");
-		}finally {
+		memo m = new memo();
+
+		try {
+			conn = ConnectionHelper.getConnection("oracle");// 추가
+			String sql = "select id, email , content from memo where id=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				m.setId(rs.getString("id"));
+				m.setEmail(rs.getString("email"));
+				m.setContent(rs.getString("content"));
+				System.out.println("1");
+			}
+
+			System.out.println("2");
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage() + "detailMemo(String id)");
+		} finally {
 			ConnectionHelper.close(rs);
 			ConnectionHelper.close(pstmt);
 			ConnectionHelper.close(conn);
-			 
+
 		}
-		//System.out.println("ismemoid : " + ismemoid);
+		// System.out.println("ismemoid : " + ismemoid);
 		System.out.println(m);
 		return m;
 	}
 
-	//1건의 데이터 read (where 조건으로 사용되는 컬럼은 반드시 unique , primary key)
-		public memo getMemoListById(String id) {
-			/*
-			  select id, email ,content from memo where id=?
-			  memo m = new memo();
-			  m.setId(rs.getInt(1)) ...
-			  return m
-			*/
-			return null;
-		}
+	// 1건의 데이터 read (where 조건으로 사용되는 컬럼은 반드시 unique , primary key)
+	public memo getMemoListById(String id) {
+		/*
+		 * select id, email ,content from memo where id=? memo m = new memo();
+		 * m.setId(rs.getInt(1)) ... return m
+		 */
+		return null;
+	}
 }
-
-
-
-
-
-

@@ -42,13 +42,15 @@
 	 	<th>Writer</th> 
 	 	<th>MemoContent</th>
 	 	<th>Email</th>
+	 	<th>수삭수삭</th>
 	 </tr>
-	
-		<tr>		
-			<td>${memo.id}</td>
-			<td>${memo.email}</td>
-			<td>${memo.content}</td>
-		</tr>
+	<tr>
+		<td>${memo.id}</td>
+		<td>${memo.email}</td>
+		<td>${memo.content}</td>
+		<td><a href="updateMemo.memo?id=${memo.id}">수정</a> 
+			<a href="deleteMemo.memo?id=${memo.id}">삭제</a></td>
+	</tr>
 	
 </table>
 </div>
