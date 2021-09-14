@@ -42,12 +42,15 @@ public class FrontMemoController extends HttpServlet {
     		//UI+로직
     		action = new MemoAddService();
     		forward = action.execute(request, response);
+    		
     		System.out.println("MemoAddService 실행");
     		
     	}else if(url_Command.equals("/MemoList.memo")) { //목록보기
     		//UI+로직
     		action = new MemoListService();
     		forward = action.execute(request, response);
+  		forward.setRedirect(true);
+   		forward.setPath("/WEB-INF/views/detailView.jsp");
     		System.out.println("MemoListService 실행");
     		
     	}else if(url_Command.equals("/MemoId.memo")) { //비동기(ID 사용 유무)
@@ -62,8 +65,6 @@ public class FrontMemoController extends HttpServlet {
     		//예) /WEB-INF/views/memoview.jsp 가정
     		action = new detailMemoService(); 
     		forward = action.execute(request, response);
-    		forward.setRedirect(false);
-    		forward.setPath("/WEB-INF/views/detailView.jsp");
     		
     	}
     	
