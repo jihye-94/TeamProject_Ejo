@@ -101,40 +101,45 @@ public class memodao {
 
 	// Update
 
-//	public int updateMemo(String id, String email, String content) {	
-//	// update memo set email=? , content=? where id=?
-//	// m.getId()
-//	Connection conn = null;// 추가
-//	PreparedStatement pstmt = null;
-//	int ref = 0;
-//	
-//	
-//
-//	try {
-//		conn = ConnectionHelper.getConnection("oracle");// 추가
-//		String sql = "update memo set email=? , content=? where id=?";
-//		pstmt = conn.prepareStatement(sql);
-//
-//		pstmt.setString(1, id);
-//		pstmt.setString(2, email);
-//		pstmt.setString(3, content);
-//
-//		ref = pstmt.executeUpdate();
-//
-//	} catch (Exception e) {
-//		System.out.println("deletdMemo(String id)" + e.getMessage());
-//	} finally {
-//
-//		ConnectionHelper.close(pstmt);
-//		ConnectionHelper.close(conn);
-//
-//	}
-//	// System.out.println("ismemoid : " + ismemoid);
-//	System.out.println("deletdMemo4 ");
-//
-//	return ref;
-//
-//	}
+	public int updateMemo(memo m) {	
+	// update memo set email=? , content=? where id=?
+	// m.getId()
+	Connection conn = null;// 추가
+	PreparedStatement pstmt = null;
+	int resultrow = 0;
+	
+	
+
+	try {
+		conn = ConnectionHelper.getConnection("oracle");// 추가
+		String sql = "update memo set email=? , content=? where id=?";
+		pstmt = conn.prepareStatement(sql);
+
+		pstmt.setString(1, m.getEmail());
+		pstmt.setString(2, m.getContent());
+		pstmt.setString(3, m.getId());
+		
+		resultrow = pstmt.executeUpdate();
+		
+	} catch (Exception e) {
+		System.out.println("updateMemo(String id)" + e.getMessage());
+	} finally {
+
+		ConnectionHelper.close(pstmt);
+		ConnectionHelper.close(conn);
+		try {
+			conn.close(); //받환하기
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	// System.out.println("ismemoid : " + ismemoid);
+	System.out.println("deletdMemo4 ");
+
+	return resultrow;
+
+	}
 	
 	// update
 	public memo updateMemo(String id, String email, String content) {
@@ -269,11 +274,9 @@ public class memodao {
 			if (rs.next()) {
 				m.setId(rs.getString("id"));
 				m.setEmail(rs.getString("email"));
-				m.setContent(rs.getString("content"));
-				System.out.println("1");
+				m.setContent(rs.getString("content"));				
 			}
 
-			System.out.println("2");
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage() + "detailMemo(String id)");

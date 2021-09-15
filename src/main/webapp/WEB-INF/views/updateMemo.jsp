@@ -37,7 +37,8 @@
 
 <div align=center>
 <hr color=green width=400><h2> Line Memo List </h2><hr color=green width=400>
-<form name="f" action="updateMemo.memo" method="get"> 
+<form name="f" action="updateOkMemo.memo" method="get"> 
+
 <table> 
 	 <tr>	 	
 	 	<th>Writer</th> 

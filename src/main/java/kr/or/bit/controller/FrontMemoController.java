@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
+import kr.or.bit.service.DeleteMemoService;
+import kr.or.bit.service.DetailMemoService;
 import kr.or.bit.service.MemoAddService;
 import kr.or.bit.service.MemoIdCheckService;
 import kr.or.bit.service.MemoListService;
+import kr.or.bit.service.UpdateMemoOkService;
 import kr.or.bit.service.UpdateMemoService;
-import kr.or.bit.service.DeleteMemoService;
-import kr.or.bit.service.DetailMemoService;
 
 
 
@@ -73,17 +74,15 @@ public class FrontMemoController extends HttpServlet {
     		action = new DeleteMemoService(); 
     		forward = action.execute(request, response);
     		System.out.println("deleteMemo 실행 완료");
-    	}
-//    	else if(url_Command.equals("/updateMemo.memo")) { //내용수정(업데이트)
-//    		forward  = new ActionForward();
-//    		forward.setRedirect(false); // forward
-//    		forward.setPath("/WEB-INF/views/updateMemo.jsp");
-//    	}
-    	else if(url_Command.equals("/updateMemo.memo")) {
+    	}else if(url_Command.equals("/updateMemo.memo")) {
     		action = new UpdateMemoService(); 
     		forward = action.execute(request, response);
     		System.out.println("updateMemo 실행 완료");	
-   	}
+    	}else if(url_Command.equals("/updateOkMemo.memo")) {
+    		action = new UpdateMemoOkService(); 
+    		forward = action.execute(request, response);
+    		System.out.println("updateOkMemo 실행 완료");	
+    	}
     	
     	if(forward != null) {
     		if(forward.isRedirect()) { //true 
