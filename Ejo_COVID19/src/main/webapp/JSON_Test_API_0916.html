@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="css/JSON_Test_API_0916.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<header>
+		<div id="left_nav">
+		
+			<table>
+			</table>
+			<p id="title">전국 COVID-19 백신 접종센터</p>
+			<p>&nbsp;</p>
+		</div>
+	</header>
+	<div id="mainbody2">
+		<div class="section">
+			<article>
+				<div id="searchsec">
+					<form name="frmdata">
+						<select id="main-city">
+							<option value="시도" SELECTED>시도</option>
+						</select>
+						<select id="sub-city">
+							<option value="시군구" SELECTED>시군구</option>
+						</select>
+					</form>
+				</div>
+				<table class="table" id="boardsec">
+					<thead>
+						<tr class="success">
+							<th id='number'>시설명</th>
+							<th id='title'>센터명</th>
+							<th id='ontime'>주소</th>
+							<th id='writer'>전화번호</th>
+						</tr>
+					</thead>
+					<tbody id="tbody" class="boardwritesec"></tbody>
+				</table>
+			</article>
+		</div>
+	</div>
+</body>
+<script src="js/JSON_Test_API_0916.js"></script>
+
+</html>
